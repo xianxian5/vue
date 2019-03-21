@@ -81,6 +81,28 @@ this.$store.commit('changeMydata',"我是二次更改") //调用mutations里面�
 this.$store.dispatch("getNewMydata","我是三次更改") //调用actions里面的方法
 ```
 
+### 3.父像子组件传递数据
+```
+//父页面中的代码
+ <First :fatherdata="forfirst"></First> 
+ data () {
+    return {
+      msg:"",
+      forfirst:"来自父页面的值",
+      forsecond:"来自父页面的值"
+    }
+  },
+ //子页面的代码
+  export default {
+    name: "first",
+    props:['fatherdata']
+  }
+```
 
+### 4.子向父传递数据
+
+```
+
+```
 
 
