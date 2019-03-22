@@ -100,9 +100,36 @@ this.$store.dispatch("getNewMydata","我是三次更改") //调用actions里面�
 ```
 
 ### 4.子向父传递数据
+#### 子组件用$emit方式传递，父组件用v-on方式接受
 
 ```
-
+//子页面传递值的时候
+created(){
+    this.$emit('get-Child', this.childValue)
+  }
+ //父页面接收值
+ <div>{{getsecond}}</div>
+ <Second :fatherdata="forsecond" v-on:get-Child="getChild"></Second>
+ 
+  methods:{
+    getChild (childValue) {
+      this.getsecond = childValue
+    }
+  }
 ```
+### 5.不同组件之间的数据传递（vue-bus）
+```
+npm install vue-bus -s
+
+main.js 引入
+import bus from 'vue-bus'
+Vue.use(bus)
+
+使用方法
+this.$bus.emit("eventName",obj)
+this.$bus.on("eventName",(data) => {})
+this.$bus.off("eventName")
+```
+### 6.路由携带数据
 
 
