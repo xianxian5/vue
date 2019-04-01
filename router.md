@@ -82,7 +82,7 @@ beforeLeave: (to, from, next) => {}
 
 ### demo
 ```
-router.js
+### router.js
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
@@ -150,7 +150,7 @@ router.onError(callback => {
 export default router
 
 
-first.vue
+### first.vue
 <template>
     <div>这里是第一页</div>
 </template>
