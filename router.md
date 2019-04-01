@@ -63,10 +63,119 @@ beforeLeave: (to, from, next) => {}
 ```
 
 ### 整个钩子函数的执行顺序
-
+beforeRouteLeave:路由组件的组件离开路由前钩子，可取消路由离开。
+beforeEach: 路由全局前置守卫，可用于登录验证、全局路由loading等。
+beforeEnter: 路由独享守卫
+beforeRouteEnter: 路由组件的组件进入路由前钩子。
+beforeResolve:路由全局解析守卫
+afterEach:路由全局后置钩子
+beforeCreate:组件生命周期，不能访问this。
+created:组件生命周期，可以访问this，不能访问dom。
+beforeMount:组件生命周期
+deactivated: 离开缓存组件a，或者触发a的beforeDestroy和destroyed组件销毁钩子。
+mounted:访问/操作dom。
+activated:进入缓存组件，进入a的嵌套子组件(如果有的话)。
+执行beforeRouteEnter回调函数next。
 
 ### 组合用的标签
 
 
 ### demo
+```
+router.js
+import Vue from 'vue'
+import Router from 'vue-router'
+import HelloWorld from '@/components/HelloWorld'
+import First from '@/components/First'
+import Second from '@/components/Second'
+Vue.use(Router)
+var router = new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'HelloWorld',
+      component: HelloWorld
+    },
+    {
+      path: '/',
+      component: HelloWorld,
+      children:[
+        {path: '/first', component: First}
+      ],
+      beforeEnter: (to, from, next) => {
+        console.log("这里是独立钩子第一页beforeEnter")
+        next()
+      },
+      beforeLeave: (to, from, next) => {
+        console.log("这里是独立钩子第一页beforeLeave")
+        next()
+      }
+    },
+    {
+      path: '/',
+      component: HelloWorld,
+      children:[
+        {path:'/second', component:Second}
+      ],
+      beforeEnter: (to, from, next) => {
+        console.log("这里是独立钩子第二页beforeEnter")
+        next()
+      },
+      beforeLeave: (to, from, next) => {
+        console.log("这里是独立钩子第二页beforeLeave")
+        next()
+      }
+    }
+  ]
+})
+
+router.beforeEach((to,from,next) => {
+  console.log('全局钩子函数beforeEach')
+  next()
+})
+
+router.beforeResolve((to,from,next) => {
+  console.log('全局钩子函数beforeResolve')
+  next()
+})
+
+router.afterEach((to,from) => {
+  console.log('全局钩子函数afterEach')
+})
+
+router.onError(callback => {
+  console.log(callback,'callback')
+})
+
+export default router
+
+
+first.vue
+<template>
+    <div>这里是第一页</div>
+</template>
+
+<script>
+export default {
+  name: "first",
+  beforeRouteEnter (to, from, next) {
+    console.log('这里是页面一beforeRouteEnter')
+    next()
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log('这里是页面一beforeRouteUpdate')
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log('这里是页面一beforeRouteLeave')
+    next()
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
+
+```
 
