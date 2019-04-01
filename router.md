@@ -63,19 +63,19 @@ beforeLeave: (to, from, next) => {}
 ```
 
 ### 整个钩子函数的执行顺序
-beforeRouteLeave:路由组件的组件离开路由前钩子，可取消路由离开。
-beforeEach: 路由全局前置守卫，可用于登录验证、全局路由loading等。
-beforeEnter: 路由独享守卫
-beforeRouteEnter: 路由组件的组件进入路由前钩子。
-beforeResolve:路由全局解析守卫
-afterEach:路由全局后置钩子
-beforeCreate:组件生命周期，不能访问this。
-created:组件生命周期，可以访问this，不能访问dom。
-beforeMount:组件生命周期
-deactivated: 离开缓存组件a，或者触发a的beforeDestroy和destroyed组件销毁钩子。
-mounted:访问/操作dom。
-activated:进入缓存组件，进入a的嵌套子组件(如果有的话)。
-执行beforeRouteEnter回调函数next。
+1. beforeRouteLeave:路由组件的组件离开路由前钩子，可取消路由离开。
+2. beforeEach: 路由全局前置守卫，可用于登录验证、全局路由loading等。
+3. beforeEnter: 路由独享守卫
+4. beforeRouteEnter: 路由组件的组件进入路由前钩子。
+5. beforeResolve:路由全局解析守卫
+6. afterEach:路由全局后置钩子
+7. beforeCreate:组件生命周期，不能访问this。
+8. created:组件生命周期，可以访问this，不能访问dom。
+9. beforeMount:组件生命周期
+10. deactivated: 离开缓存组件a，或者触发a的beforeDestroy和destroyed组件销毁钩子。
+11. mounted:访问/操作dom。
+12. activated:进入缓存组件，进入a的嵌套子组件(如果有的话)。
+13. 执行beforeRouteEnter回调函数next。
 
 ### 组合用的标签
 
