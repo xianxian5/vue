@@ -28,3 +28,15 @@ module: {
   },
 其中extract: true,改成false
 ```
+3.添加scss
+```
+1. 关闭运行的项目
+2. npm run sass-loader node-sass -s
+3. 
+<style scoped lang="scss">
+$color:red;
+div{
+  color: $color;
+}
+</style>
+```
